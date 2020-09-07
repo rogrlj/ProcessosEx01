@@ -25,6 +25,14 @@ public class RedesController {
 		return (buffer.toString());
 	}
 	
+	public String callProcessL (String process) {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("xfce4-terminal");
+		buffer.append(" ");
+		buffer.append(process);
+		return (buffer.toString());
+	}
+	
 //	Função que faz a chamada de configuração do IP
 	public void ip(String os) {
 		
@@ -60,7 +68,7 @@ public class RedesController {
 		}
 		else {
 			try {
-				Process p = Runtime.getRuntime().exec(callProcessW("ifconfig"));
+				Process p = Runtime.getRuntime().exec(callProcessL("ifconfig"));
 				InputStream fluxo = p.getInputStream();
 				InputStreamReader leitor = new InputStreamReader(fluxo);
 				BufferedReader buffer = new BufferedReader(leitor);
