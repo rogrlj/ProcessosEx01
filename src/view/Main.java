@@ -14,7 +14,8 @@ public class Main {
 		
 		System.out.println("\n====================================");
 		
-		redesController.ip(os);
+//		redesController.ip(os);
+		redesController.ping(os);
 
 	}
 
