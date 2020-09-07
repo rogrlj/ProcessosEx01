@@ -8,8 +8,13 @@ public class Main {
 		
 		RedesController redesController = new RedesController ();
 		
+//		Chamada da função para reconhecimento do SO.
 		String os = redesController.os();
 		System.out.println("SISTEMA OPERACIONAL: " + os);
+		
+		System.out.println("\n====================================");
+		
+		redesController.ip(os);
 
 	}
 
