@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import javax.swing.JOptionPane;
+
 public class RedesController {
 	
 	public RedesController () {
@@ -29,7 +31,8 @@ public class RedesController {
 	
 //	Função que faz a chamada de configuração do IP
 	public void ip(String os) {
-		
+		String bf = "ADAPTADORES ETHERNET E IPv4: \n";
+		System.out.println("\n====================================");
 		System.out.println("ADAPTADORES ETHERNET E IPv4: " + "\n");
 		if (os.contains("Windows")) {
 			try {
@@ -41,10 +44,12 @@ public class RedesController {
 				while (linha != null) {
 					if (linha.contains("Adaptador")){
 						System.out.println(linha);
+						bf += linha + "\n";
 						linha = buffer.readLine();
 					}
 					else if(linha.contains("IPv4")) {
 						System.out.println(linha);
+						bf += linha + "\n";
 						linha = buffer.readLine();
 					}
 					else {
@@ -70,10 +75,12 @@ public class RedesController {
 				while (linha != null) {
 					if (linha.contains("Ethernet")){
 						System.out.println(linha);
+						bf += linha +"\n";
 						linha = buffer.readLine();
 					}
 					else if(linha.contains("inet")) {
 						System.out.println(linha);
+						bf += linha + "\n";
 						linha = buffer.readLine();
 					}
 					else {
@@ -89,12 +96,14 @@ public class RedesController {
 				e.printStackTrace();
 			}
 		}
+		JOptionPane.showMessageDialog(null, bf);
 	}
 	
 //	Função que calcula o PING médio em 10 iterações
 	public void ping (String os) {
-		
-		System.out.println("PING médio: ");
+		String bf = "PING Médio: \n";
+		System.out.println("\n====================================");
+		System.out.println("\nPING médio: ");
 		if (os.contains("Windows")) {
 			try {
 				Process p = Runtime.getRuntime().exec(callProcessW("ping -n 10 www.google.com.br"));
@@ -105,6 +114,7 @@ public class RedesController {
 				while (linha != null) {
 					if (linha.contains("ximo")){
 						System.out.println(linha.substring(41));
+						bf += linha.substring(41);
 						linha = buffer.readLine();
 					}
 					else {
@@ -130,6 +140,7 @@ public class RedesController {
 				while (linha != null) {
 					if (linha.contains("avg")){
 						System.out.println(linha.substring(30, 36) + "ms");
+						bf += linha.substring(30, 36) + "ms";
 						linha = buffer.readLine();
 					}
 					else {
@@ -145,6 +156,6 @@ public class RedesController {
 				e.printStackTrace();
 			}
 		}
+		JOptionPane.showMessageDialog(null, bf);
 	}
-
 }
